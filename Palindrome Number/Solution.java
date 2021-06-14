@@ -8,7 +8,7 @@ class Solution {
         
 		
         while (start <= end) {
-		// If these match, we increment to move to the next digits.  For example:
+		// If these match, we increment/decrementto move to the next digits.  For example:
 		// 1 2 2 1   (S = Start, E = End) Compare's the 1's
 		// S     E   --- Start++ End-- 
 		//   S E     --- Compares the 2's which are equal, so we increment start and decrement end.   
