@@ -1,32 +1,9 @@
-// "static void main" must be defined in a public class.
-public class Main {
-    public static void main(String[] args) {
-       /*
-       "abcabd", return 2
-        "thedailybyte", return 1
-        "developer", return 0
-       */
-        
-        String testCase1  = "abcabd";
-        String testCase2  = "thedailybyte";
-        String testCase3  = "developer";
-        String testCase4  = "abababa";
-        
-        
-        //int end = testCase1.length()-1;
-        //int result = end;
-        
-        HashMap<Character, Integer> countOfChars;
-        
-        System.out.println(helper(testCase1, new HashMap<>()));
-        System.out.println(helper(testCase2, new HashMap<>()));
-        System.out.println(helper(testCase3, new HashMap<>()));
-        System.out.println(helper(testCase4, new HashMap<>()));
-        
-       
+class Solution {
+    public int firstUniqChar(String s) {
+        if(s.length() == 1) return 0;
+        return helper(s, new HashMap<>());
     }
-    
-     public static int helper(String testCase, HashMap<Character, Integer> countOfChars)
+    public static int helper(String testCase, HashMap<Character, Integer> countOfChars)
         {
         int end = testCase.length()-1;
         int result = end;
@@ -34,13 +11,19 @@ public class Main {
             Character currentChar = testCase.charAt(end);
             if(!countOfChars.containsKey(currentChar)){
                 countOfChars.put(currentChar, 1);
-                result = end;
             }
                else{
                    countOfChars.put(currentChar, countOfChars.get(currentChar) + 1);
                }
                end--;
         }
-        return countOfChars.containsValue(1) ? result : -1;
+        int start = 0;
+        while(start <= testCase.length()-1) {
+            if(countOfChars.get(testCase.charAt(start)) == 1 ) {
+                return start;
+            }
+            start++;
+        }
+        return -1;
     }
 }
